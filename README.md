@@ -1,1 +1,0 @@
-# mathematical-model-of-photodynamic-therapy
