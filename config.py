@@ -138,11 +138,13 @@ data_file_naming_specification = r"(\d+)J"
 # Assuming same relationsship between absorbance intensity and concentration for PpIX and Ppp
 factor_PpIX = 101.2
 bias_PpIX = 13.2
-element_mass_PpIX = 563.658
+element_mass_PpIX = 563.85 #TODO 563.658
 
 factor_Ppp = 101.2
-bias_Ppp = 13.2
-element_mass_Ppp = 595.657
+bias_Ppp = 0 #13.2
+element_mass_Ppp = 595.85 #TODO 595.657
+
+interval_length = 0.5;
 
 # Create an empty dictionary that is used to store the uploaded data.
 uploaded_data = {}

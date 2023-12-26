@@ -48,7 +48,7 @@ def prepare_raw_data(raw_data, filename, solvent_label):
     sorted_itensity_data = pd.DataFrame(unsorted_itensity_data.groupby('tag').mean()).reset_index()
 
     # Get the solvent values
-    solvent_values = sorted_itensity_data.loc[0, ['PpIX_value', 'Ppp_value']].values[0]
+    solvent_values = sorted_itensity_data.loc[0, ['PpIX_value', 'Ppp_value']].values
 
     # Subtract the solvent from all values and remove the solvent row from the dataframe
     sorted_itensity_data[['PpIX_value', 'Ppp_value']] = sorted_itensity_data[['PpIX_value', 'Ppp_value']].sub(solvent_values)
@@ -66,15 +66,15 @@ def prepare_raw_data(raw_data, filename, solvent_label):
     return concentration_data
 
 
-def extract_PpIX_intensity(data, interval_lenght = 1):
+def extract_PpIX_intensity(data):
     """ 
     Extract the maximal intensity value that is occuring in a specified interval around the element mass
     specified in the config file.
     """
 
     # Create a upper and lower mass thresh for the extraction interval
-    upper_thresh = element_mass_PpIX + interval_lenght/2 
-    lower_thresh = element_mass_PpIX - interval_lenght/2
+    upper_thresh = element_mass_PpIX + interval_length/2 
+    lower_thresh = element_mass_PpIX - interval_length/2
 
      # Check if threshholds are in range of the data
     if (data['mass'].max()>element_mass_PpIX and  data['mass'].min() < element_mass_PpIX):
@@ -85,19 +85,18 @@ def extract_PpIX_intensity(data, interval_lenght = 1):
         
         # Get the maximum value inside the specified interval around the element mass
         value_PpIX = data.iloc[low:up, :].max()['value']
-    
     # Return the maximal intensity value inside the extraction interval
     return value_PpIX
 
-def extract_Ppp_intensity(data, interval_lenght = 1):
+def extract_Ppp_intensity(data):
     """ 
     Extract the maximal intensity value that is occuring in a specified interval around the element mass
     specified in the config file.
     """
 
     # Create a upper and lower mass thresh for the extraction interval
-    upper_thresh = element_mass_Ppp + interval_lenght/2 
-    lower_thresh = element_mass_Ppp - interval_lenght/2
+    upper_thresh = element_mass_Ppp + interval_length/2 
+    lower_thresh = element_mass_Ppp - interval_length/2
 
      # Check if threshholds are in range of the data
     if (data['mass'].max()>element_mass_Ppp and  data['mass'].min() < element_mass_Ppp):
@@ -108,6 +107,5 @@ def extract_Ppp_intensity(data, interval_lenght = 1):
         
         # Get the maximum value inside the specified interval around the element mass
         value_Ppp = data.iloc[low:up, :].max()['value']
-        
     # Return the maximal intensity value inside the extraction interval
     return value_Ppp
