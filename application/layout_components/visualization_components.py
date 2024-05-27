@@ -106,6 +106,7 @@ def create_reactive_oxygen_figure():
     """
 
     t = np.linspace(0, experimental_setup.get_irradiation_time(), 10001)
+    print (reactive_singlet_oxygen(t))
     return (
         create_figure(
                 x = t * visualization_setup.get_x_factor(), 
@@ -169,14 +170,13 @@ def create_opt_Ppp_value_score_figure():
             title="Optimization history: µ Ppp",
         ).update_layout(xaxis_title ="Iteration")
     )
-
 """
 Application layout components
 """
 
 # Dropdown menu for choosing the first figure
 plot_1_dropdown = html.Div(children=[
-    dcc.Dropdown(['Ground State Photosensitizer', 'Singlet oxygen concentration', 'Emitted singelt oxygen concentration', 'Reactive singlet oxygen concentration'], 
+    dcc.Dropdown(['Ground State Photosensitizer', 'Singlet oxygen concentration', 'Emitted singelt oxygen concentration', 'Reactive singlet oxygen concentration', 'MS'], 
                  'Ground State Photosensitizer', 
                  id="plot_1_dropdown")
 ])

@@ -52,7 +52,7 @@ variable_parameter = dbc.Col(
                     [
                         subtitle_variable_parameter,
                         variable_parameter_introduction,
-                        set_mu_PpIX, set_mu_Ppp,
+                        set_mu_PpIX, set_mu_Ppp
                     ], style={'textAlign': 'center',}
                 )
 
@@ -76,6 +76,14 @@ param_opt = dbc.Col(
                         param_opt_button,
                     ], style={'textAlign': 'center',}
                 )
+
+# Enables adjusting all the other parameters for PDT
+xi_dash = dbc.Col([xi_dash_introduction, set_xi_dash_PpIX, set_xi_dash_Ppp], style={'textAlign': 'center',})
+beta = dbc.Col([beta_introduction, set_beta_PpIX, set_beta_Ppp], style={'textAlign': 'center',})
+delta = dbc.Col([delta_introduction, set_delta_PpIX, set_delta_Ppp], style={'textAlign': 'center',})
+Phi_t = dbc.Col([Phi_t_introduction, set_Phi_t_PpIX, set_Phi_t_Ppp], style={'textAlign': 'center',})
+S_Delta = dbc.Col([S_Delta_introduction, set_S_Delta_PpIX, set_S_Delta_Ppp], style={'textAlign': 'center',})
+gamma = dbc.Col([gamma_introduction, set_gamma_PpIX, set_gamma_Ppp], style={'textAlign': 'center',})
 
 # Combined layout for the simulation application
 app.layout = html.Div(children=[
@@ -103,6 +111,15 @@ app.layout = html.Div(children=[
         # Data upload
         data_upload, 
         html.Br(),
+        # Additional variable parameter setup
+        dbc.Row([
+            xi_dash,
+            beta,
+            delta,
+            S_Delta,
+            gamma, 
+            Phi_t,
+        ])
     ])
 ])
 
@@ -207,6 +224,151 @@ def update_mu_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
 )
 def update_mu_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
     return (mu_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update all other param
+# Update xi_dash for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_xi_dash_PpIX', 'value', allow_duplicate=True), Output('slider_xi_dash_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_xi_dash_PpIX', 'value'),
+    Input('slider_xi_dash_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_xi_dash_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (xi_dash_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update xi_dash for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_xi_dash_Ppp', 'value', allow_duplicate=True), Output('slider_xi_dash_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_xi_dash_Ppp', 'value'),
+    Input('slider_xi_dash_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_xi_dash_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (xi_dash_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update beta for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_beta_PpIX', 'value', allow_duplicate=True), Output('slider_beta_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_beta_PpIX', 'value'),
+    Input('slider_beta_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_beta_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (beta_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update beta for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_beta_Ppp', 'value', allow_duplicate=True), Output('slider_beta_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_beta_Ppp', 'value'),
+    Input('slider_beta_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_beta_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (beta_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update delta for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_delta_PpIX', 'value', allow_duplicate=True), Output('slider_delta_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_delta_PpIX', 'value'),
+    Input('slider_delta_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_delta_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (delta_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update delta for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_delta_Ppp', 'value', allow_duplicate=True), Output('slider_delta_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_delta_Ppp', 'value'),
+    Input('slider_delta_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_delta_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (delta_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update S_Delta for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_S_Delta_PpIX', 'value', allow_duplicate=True), Output('slider_S_Delta_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_S_Delta_PpIX', 'value'),
+    Input('slider_S_Delta_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_S_Delta_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (S_Delta_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update S_Delta for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_S_Delta_Ppp', 'value', allow_duplicate=True), Output('slider_S_Delta_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_S_Delta_Ppp', 'value'),
+    Input('slider_S_Delta_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_S_Delta_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (S_Delta_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update gamma for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_gamma_PpIX', 'value', allow_duplicate=True), Output('slider_gamma_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_gamma_PpIX', 'value'),
+    Input('slider_gamma_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_gamma_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (gamma_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update gamma for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_gamma_Ppp', 'value', allow_duplicate=True), Output('slider_gamma_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_gamma_Ppp', 'value'),
+    Input('slider_gamma_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_gamma_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (gamma_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update Phi_t for PpIX
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_Phi_t_PpIX', 'value', allow_duplicate=True), Output('slider_Phi_t_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_Phi_t_PpIX', 'value'),
+    Input('slider_Phi_t_PpIX', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_Phi_t_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (Phi_t_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+
+# Update Phi_t for Ppp
+@callback(
+    Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
+    Output('textbox_Phi_t_Ppp', 'value', allow_duplicate=True), Output('slider_Phi_t_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_Phi_t_Ppp', 'value'),
+    Input('slider_Phi_t_Ppp', 'value'),
+    State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_Phi_t_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (Phi_t_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
 
 # Upload mass spectrometry data
 @callback(

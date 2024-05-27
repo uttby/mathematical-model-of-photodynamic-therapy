@@ -147,6 +147,282 @@ def mu_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
     # Return the updated data plots and the new value of mu synching the displayed value of slider and textbox
     return (plot_1, plot_2, mu, mu)
 
+def xi_dash_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable xi_dash for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    xi_dash = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_xi_dash_PpIX(xi_dash)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, xi_dash, xi_dash)
+
+def xi_dash_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable xi_dash for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    xi_dash = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_xi_dash_Ppp(xi_dash)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, xi_dash, xi_dash)
+
+def beta_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable beta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    beta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_beta_PpIX(beta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, beta, beta)
+
+def beta_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable beta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    beta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_beta_Ppp(beta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, beta, beta)
+
+def delta_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable delta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    delta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_delta_PpIX(delta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, delta, delta)
+
+def delta_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable delta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    delta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_delta_Ppp(delta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, delta, delta)
+
+def Phi_t_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable Phi_t for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    Phi_t = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_Phi_t_PpIX(Phi_t)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, Phi_t, Phi_t)
+
+def Phi_t_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable Phi_t for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    Phi_t = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_Phi_t_Ppp(Phi_t)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, Phi_t, Phi_t)
+
+def S_Delta_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable S_Delta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    S_Delta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_S_Delta_PpIX(S_Delta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, S_Delta, S_Delta)
+
+def S_Delta_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable S_Delta for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    S_Delta = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_S_Delta_Ppp(S_Delta)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, S_Delta, S_Delta)
+
+def gamma_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable gamma for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    gamma = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_gamma_PpIX(gamma)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, gamma, gamma)
+
+def gamma_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+    """ 
+    Updates the value of the variable gamma for PpIX.
+    """
+
+    # Check if the callback was triggered by an empty input
+    if (ctx.triggered[0]['value'] is None):
+        # Prevent updating the plots if the input is empty
+        raise PreventUpdate
+    
+    # Extract the value of either the slider or textbox, whichever has been changed
+    gamma = ctx.triggered[0]['value']
+
+    # Update the specific parameter setup with the new value for mu of PpIX
+    specific_parameter_setup.set_gamma_Ppp(gamma)
+
+    # Call a callback function to update the plot based on the dropdown selection
+    plot_1 = dropdown_figure_callback(plot_1_dropdown)
+    plot_2 = dropdown_figure_callback(plot_2_dropdown)
+
+    # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
+    return (plot_1, plot_2, gamma, gamma)
+
 def upload_mass_spectrometry_data_callback(data, filename, label, solvent_label, plot_1_dropdown, plot_2_dropdown):
     """ 
     Prepares and stores the uploaded concentration data. 

@@ -7,4 +7,4 @@ STARTING_MESSAGE = \
 if __name__ == '__main__':
     """ Starts the simulation application. """
     print (STARTING_MESSAGE)
-    app.run(debug=False)
+    app.run(debug=True)
