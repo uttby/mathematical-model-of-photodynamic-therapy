@@ -13,7 +13,7 @@ def ground_state_concentration(t):
     """
 
     # Extract specific parameters for PpIX and Ppp from the specific parameter setup
-    xi_dash_PpIX, xi_dash_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
+    xi_PpIX, xi_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
     Phi__PpIX_t, Phi__Ppp_t, S_Delta_PpIX, S_Delta_Ppp, gamma_PpIX, gamma_Ppp = specific_parameter_setup.get_all_parameters()
 
     # Extract experimental parameters for PpIX and Ppp from the experimental setup
@@ -22,28 +22,27 @@ def ground_state_concentration(t):
     S__t0_PpIX = experimental_setup.get_S__t0_PpIX()
     APR_PpIX, APR_Ppp = experimental_setup.get_APR_PpIX(), experimental_setup.get_APR_Ppp()    
 
+# Define the function that represents the system of differential equations
+
     # Define the function that represents the system of differential equations
     # (for more information about how these equations are formed, please refer to the supporting information)
     def system(y, t):
         S__0_PpIX, S__0_Ppp = y
 
-        dS__0_PpIX_dt = -(c__oxy * mu_PpIX * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp + c__oxy) * S__0_PpIX
-            + c__oxy * power_density * mu_PpIX * xi_dash_Ppp * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_PpIX
-            + (c__oxy * delta_PpIX * mu_PpIX * power_density * xi_dash_PpIX + 2 * Phi__PpIX_t * mu_PpIX * APR_PpIX)
-            * (beta_Ppp + gamma_Ppp + c__oxy)) * S__0_PpIX / ((beta_Ppp + gamma_Ppp + c__oxy)*(beta_PpIX + gamma_PpIX + c__oxy) * 2)
-        
-        dS__0_Ppp_dt = 1/(2*(beta_PpIX + gamma_PpIX + c__oxy)*(beta_Ppp + gamma_Ppp + c__oxy)) * (
-            -c__oxy * mu_Ppp * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_Ppp * S__0_Ppp
-            + (
-                (
-                    (-mu_Ppp * xi_dash_PpIX + mu_PpIX * xi_dash_Ppp) * c__oxy * power_density 
-                    + mu_PpIX * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX) 
-                    - mu_Ppp * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp)
-                ) * c__oxy * S__0_PpIX 
-                - (c__oxy * delta_Ppp * mu_Ppp * power_density * xi_dash_Ppp + APR_Ppp * 2 * Phi__Ppp_t * gamma_Ppp) * (beta_PpIX + gamma_PpIX + c__oxy)
-            ) * S__0_Ppp 
-            + c__oxy * S__0_PpIX * mu_PpIX * xi_dash_PpIX * power_density * (S__0_PpIX + delta_PpIX) * (beta_Ppp + gamma_Ppp + c__oxy))
-
+        dS__0_PpIX_dt = -mu_PpIX*c__oxy/2 * (
+            S__0_PpIX * (xi_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)
+            + 
+            (S__0_PpIX + delta_PpIX)*(xi_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+        )
+       
+        dS__0_Ppp_dt = -mu_Ppp*c__oxy/2 * (
+            S__0_Ppp * (xi_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+            + 
+            (S__0_Ppp + delta_Ppp)*(xi_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)) + mu_PpIX*c__oxy/2 * (
+            S__0_PpIX * (xi_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)
+            + 
+            (S__0_PpIX + delta_PpIX)*(xi_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+        )
         return [dS__0_PpIX_dt, dS__0_Ppp_dt]
 
     # Define the initial conditions
@@ -57,7 +56,6 @@ def ground_state_concentration(t):
     # Return the nurmerical solutions for PpIX and Ppp
     return [S__0_PpIX, S__0_Ppp]
 
-
 def singlet_oxygen_concentration(t):
     """ 
     Uses the numerical solution for the ground state concentration 
@@ -70,7 +68,7 @@ def singlet_oxygen_concentration(t):
     """
 
     # Extract specific parameters for PpIX and Ppp from the specific_parameter_setup object
-    xi_dash_PpIX, xi_dash_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
+    xi_PpIX, xi_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
     Phi__PpIX_t, Phi__Ppp_t, S_Delta_PpIX, S_Delta_Ppp, gamma_PpIX, gamma_Ppp = specific_parameter_setup.get_all_parameters()
 
     # Extract experimental parameters for PpIX and Ppp from the experimental_setup object
@@ -88,10 +86,10 @@ def singlet_oxygen_concentration(t):
     S__0_Ppp = ground_state_PS[1]
 
     # Calculate singlet oxygen concentrations for PpIX and Ppp
-    singlet_oxygen_PpIX = (c__oxy * xi_dash_PpIX * power_density * S__0_PpIX) \
+    singlet_oxygen_PpIX = (c__oxy * xi_PpIX * power_density * S__0_PpIX) \
                           / (2 * koaA * (beta_Ppp + gamma_Ppp + c__oxy))
 
-    singlet_oxygen_Ppp = (c__oxy * xi_dash_Ppp * power_density * S__0_Ppp) \
+    singlet_oxygen_Ppp = (c__oxy * xi_Ppp * power_density * S__0_Ppp) \
                           / (2 * koaA * (beta_PpIX + gamma_PpIX + c__oxy))
 
     # Calculate the total singlet oxygen concentration (sum of PpIX and Ppp contributions)
@@ -113,12 +111,13 @@ def emitted_singlet_oxygen(t):
     """
         
     # Extract specific parameters for PpIX and Ppp from the specific_parameter_setup object
-    xi_dash_PpIX, xi_dash_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
+    xi_PpIX, xi_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
     Phi__PpIX_t, Phi__Ppp_t, S_Delta_PpIX, S_Delta_Ppp, gamma_PpIX, gamma_Ppp = specific_parameter_setup.get_all_parameters()
 
     # Extract experimental parameters for PpIX and Ppp from the experimental_setup object
     c__oxy = experimental_setup.get_c__oxy()
     APR_PpIX, APR_Ppp = experimental_setup.get_APR_PpIX(), experimental_setup.get_APR_Ppp()
+    print (APR_PpIX, APR_Ppp)
     
     # Integrate the ground state concentration over time using cumulative sum
     delta_t = t[-1] / (len(t) - 1)
@@ -151,7 +150,7 @@ def reactive_singlet_oxygen(t):
     # Assuming gamma_Ppp and gamma_PpIX to be zero (refer to supporting information for more information)
 
     # Extract specific parameters for PpIX and Ppp from the specific_parameter_setup object
-    xi_dash_PpIX, xi_dash_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
+    xi_PpIX, xi_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp, \
     Phi__PpIX_t, Phi__Ppp_t, S_Delta_PpIX, S_Delta_Ppp, gamma_PpIX, gamma_Ppp = specific_parameter_setup.get_all_parameters()
 
     # Extract experimental parameters for PpIX and Ppp from the experimental_setup object
@@ -167,8 +166,8 @@ def reactive_singlet_oxygen(t):
     int_S__0_Ppp_values = np.cumsum(ground_state_PS[1] * delta_t)
 
     # Calculate reactive singlet oxygen for PpIX and Ppp using integrated ground state concentrations
-    emitted_singlet_oxygen_PpIX = (c__oxy * xi_dash_PpIX * power_density) * int_S__0_PpIX_values / (beta_PpIX + c__oxy)
-    emitted_singlet_oxygen_Ppp  = (c__oxy * xi_dash_Ppp * power_density) * int_S__0_Ppp_values / (beta_Ppp + c__oxy)
+    emitted_singlet_oxygen_PpIX = (c__oxy * xi_PpIX * power_density) * int_S__0_PpIX_values / (2*(beta_PpIX + c__oxy))
+    emitted_singlet_oxygen_Ppp  = (c__oxy * xi_Ppp * power_density) * int_S__0_Ppp_values / (2*(beta_PpIX + c__oxy))
 
     # Calculate the total reactive singlet oxygen (sum of PpIX and Ppp contributions)
     emitted_singlet_oxygen_total = emitted_singlet_oxygen_PpIX + emitted_singlet_oxygen_Ppp

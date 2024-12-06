@@ -44,8 +44,3 @@ class VisualizationSetup():
 
     def get_opt_results(self):
         return(self.opt_results)
-
-
-
-
-    

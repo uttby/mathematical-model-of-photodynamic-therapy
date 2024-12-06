@@ -1,14 +1,14 @@
 class SpecificParameterSetup:   
     def __init__(self,
-                 xi_dash_PpIX, xi_dash_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp,
+                 xi_PpIX, xi_Ppp, beta_PpIX, beta_Ppp, mu_PpIX, mu_Ppp, delta_PpIX, delta_Ppp,
                  Phi_t_PpIX, Phi_t_Ppp, S_Delta_PpIX, S_Delta_Ppp, gamma_PpIX, gamma_Ppp):
         """ 
         This object manages all experimental independent parameters that are needed for the mathematical model of PDT. 
         For explanations about the meaning of the parameters please refer to the literature or the explanation inside hthe config.py file.
 
         Args:
-            xi_dash_PpIX (float): Parameter xi_dash for PpIX.
-            xi_dash_Ppp (float): Parameter xi_dash for Ppp.
+            xi_PpIX (float): Parameter xi for PpIX.
+            xi_Ppp (float): Parameter xi for Ppp.
             beta_PpIX (float): Parameter beta for PpIX.
             beta_Ppp (float): Parameter beta for Ppp.
             mu_PpIX (float): Parameter mu for PpIX.
@@ -23,8 +23,8 @@ class SpecificParameterSetup:
             gamma_Ppp (float): Parameter gamma for Ppp
         """
         # Initialize all the parameters
-        self.xi_dash_PpIX = xi_dash_PpIX
-        self.xi_dash_Ppp = xi_dash_Ppp
+        self.xi_PpIX = xi_PpIX
+        self.xi_Ppp = xi_Ppp
         self.beta_PpIX = beta_PpIX
         self.beta_Ppp = beta_Ppp
         self.mu_PpIX = mu_PpIX
@@ -39,11 +39,11 @@ class SpecificParameterSetup:
         self.gamma_Ppp = gamma_Ppp
 
     # Getter methods for accessing the individual parameter values
-    def get_xi_dash_PpIX(self):
-        return self.xi_dash_PpIX
+    def get_xi_PpIX(self):
+        return self.xi_PpIX
 
-    def get_xi_dash_Ppp(self):
-        return self.xi_dash_Ppp
+    def get_xi_Ppp(self):
+        return self.xi_Ppp
 
     def get_beta_PpIX(self):
         return self.beta_PpIX
@@ -96,16 +96,16 @@ class SpecificParameterSetup:
             List: A list containing all the parameters.
         """
         return [
-            self.xi_dash_PpIX, self.xi_dash_Ppp, self.beta_PpIX, self.beta_Ppp, self.mu_PpIX, self.mu_Ppp,
+            self.xi_PpIX, self.xi_Ppp, self.beta_PpIX, self.beta_Ppp, self.mu_PpIX, self.mu_Ppp,
             self.delta_PpIX, self.delta_Ppp, self.Phi_t_PpIX, self.Phi_t_Ppp, self.S_Delta_PpIX, self.S_Delta_Ppp, self.gamma_PpIX, self.gamma_Ppp
         ]
 
     # Setter methods for modifying individual parameter values
-    def set_xi_dash_PpIX(self, xi_dash_PpIX):
-        self.xi_dash_PpIX = xi_dash_PpIX
+    def set_xi_PpIX(self, xi_PpIX):
+        self.xi_PpIX = xi_PpIX
 
-    def set_xi_dash_Ppp(self, xi_dash_Ppp):
-        self.xi_dash_Ppp = xi_dash_Ppp
+    def set_xi_Ppp(self, xi_Ppp):
+        self.xi_Ppp = xi_Ppp
 
     def set_beta_PpIX(self, beta_PpIX):
         self.beta_PpIX = beta_PpIX
@@ -157,7 +157,7 @@ class SpecificParameterSetup:
             parameters (List): A list of values corresponding to all parameters.
         """
         (
-            self.xi_dash_PpIX, self.xi_dash_Ppp, self.beta_PpIX, self.beta_Ppp, self.mu_PpIX, self.mu_Ppp,
+            self.xi_PpIX, self.xi_Ppp, self.beta_PpIX, self.beta_Ppp, self.mu_PpIX, self.mu_Ppp,
             self.delta_PpIX, self.delta_Ppp, self.Phi_t_PpIX, self.Phi_t_Ppp,
             self.mu_PpIX, self.mu_Ppp, self.S_Delta_PpIX, self.S_Delta_Ppp, self.gamma_PpIX, self.gamma_Ppp
         ) = parameters

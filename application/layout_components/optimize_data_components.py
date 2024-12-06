@@ -25,18 +25,18 @@ set_min_max_PpIX = html.Div(
         html.Label('Set the borders for optimization'),
         html.Br(),
         html.Label('μ PpIX min: '),
-        dcc.Input(value=1e-6, type='number', id='min_mu_PpIX_opt', min=1e-6, max=0.001, step=1e-6, style={'textAlign': 'center',}),
+        dcc.Input(value=1e-8, type='number', id='min_mu_PpIX_opt', min=1e-8, max=0.001, step=1e-8, style={'textAlign': 'center',}),
         html.Label('μ PpIX max: '),
-        dcc.Input(value=0.001, type='number', id='max_mu_PpIX_opt', min=1e-6, max=0.001, step=1e-6, style={'textAlign': 'center',})
+        dcc.Input(value=1e-3, type='number', id='max_mu_PpIX_opt', min=1e-8, max=0.001, step=1e-8, style={'textAlign': 'center',})
     ]
 )
 
 set_min_max_Ppp = html.Div(
     [
         html.Label('μ Ppp min: '),
-        dcc.Input(value=1e-6, type='number', id='min_mu_Ppp_opt', min=1e-6, max=0.001, step=1e-6, style={'textAlign': 'center',}),
+        dcc.Input(value=1e-8, type='number', id='min_mu_Ppp_opt', min=1e-8, max=0.001, step=1e-8, style={'textAlign': 'center',}),
         html.Label('μ Ppp max: '),
-        dcc.Input(value=0.001, type='number', id='max_mu_Ppp_opt', min=1e-6, max=0.001, step=1e-6, style={'textAlign': 'center',}),
+        dcc.Input(value=1e-3, type='number', id='max_mu_Ppp_opt', min=1e-8, max=0.001, step=1e-8, style={'textAlign': 'center',}),
         html.Br(),
         html.Br(),
     ]

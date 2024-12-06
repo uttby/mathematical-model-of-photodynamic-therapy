@@ -61,7 +61,6 @@ def prepare_raw_data(raw_data, filename, solvent_label):
     # in the config file
     concentration_data['PpIX_value'] =(prepared_intensity_data['PpIX_value'] - bias_PpIX) / factor_PpIX
     concentration_data['Ppp_value'] = (prepared_intensity_data['Ppp_value'] - bias_Ppp) / factor_Ppp 
-
     # Return the prepared concentration data with updated column names
     return concentration_data
 
@@ -71,20 +70,17 @@ def extract_PpIX_intensity(data):
     Extract the maximal intensity value that is occuring in a specified interval around the element mass
     specified in the config file.
     """
-
     # Create a upper and lower mass thresh for the extraction interval
     upper_thresh = element_mass_PpIX + interval_length/2 
     lower_thresh = element_mass_PpIX - interval_length/2
 
      # Check if threshholds are in range of the data
     if (data['mass'].max()>element_mass_PpIX and  data['mass'].min() < element_mass_PpIX):
-
         # Find the location of the mass value that is included into the data closest to the threshhold
         up = np.argwhere(np.array(data["mass"])>upper_thresh).min()
         low = np.argwhere(np.array(data["mass"])<lower_thresh).max()
-        
         # Get the maximum value inside the specified interval around the element mass
-        value_PpIX = data.iloc[low:up, :].max()['value']
+        value_PpIX = data.iloc[low:up, :]['value'].max()
     # Return the maximal intensity value inside the extraction interval
     return value_PpIX
 

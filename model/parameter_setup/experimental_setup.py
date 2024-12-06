@@ -58,13 +58,11 @@ class ExperimentalSetup:
         Returns the emitted photon rate for the stored experimental setup.
         """
         # Absorbed photon rate 
-        photon_energy = sc.Planck * sc.speed_of_light / (self.wavelength * pow(10, -9))      
+        photon_energy = sc.Planck * sc.speed_of_light / (self.wavelength * pow(10, -9))   
         # [m^2 kg / s][m / s][1 / m] -> J
 
-        # Emitted photon rate
-        EPR = (self.power_density * pow(10, 4)) * (1 / photon_energy)  # [W/m^2][1/J]  -> [1/(s*m^2)]
-        EPR = EPR * pow(10, -4)  # [1/(s*m^2)] -> [1/(s*cm^2)]
-
+        # Emitted photon rate 
+        EPR = (self.power_density * pow(10, -3)) * (1 / photon_energy)  # [W/cm^2][1/J]  -> [1/(s*cm^2)]
         return EPR
 
     def get_APR_PpIX(self):
