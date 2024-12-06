@@ -21,11 +21,11 @@ intensity_100J_0J_location = "data_files/absorbance_PpIX_635nm_10mW_0J_100J.csv"
 intensity_100J_0J = pd.read_csv(intensity_100J_0J_location, sep = ",").astype(float).astype({"wavelenght" : "int"}).set_index("wavelenght")
 
 # Initial concentration of PpIX for the absorbance intensity measurement
-concentration_PpIX_0J =  10 * 10e-6 # mol/l
+concentration_PpIX_0J =  10e-6 # mol/l
 
 # Concentration of PpIX and Ppp after the solution has been irradiated with an energy Dose of 100J 
-concentration_PpIX_100J = 2.382 * 10e-6 # mol/l
-concentration_Ppp_100J =  0.986 * 10e-6 # mol/l
+concentration_PpIX_100J = 2.382e-6 # mol/l
+concentration_Ppp_100J =  0.986e-6 # mol/l
 
 # The lenght the light travels inside the solution while the absorbance intensity is measured.
 L = 1 #cm
@@ -63,13 +63,12 @@ experimental_setup = ExperimentalSetup(
     irradiation_time = 100)
 
 # ---------------------------------SPECIFIC SETUP DEFINITIONS--------------------------------------------------
-# TODO add sources?
 # Create an instance of SpecificParameterSetup with the specified parameter values for the simulation
 specific_parameter_setup = SpecificParameterSetup(
-    # ξ symbolyses the specific oxygen consuption rate 
-    # ξ'=S_Δ ϕ_t *(k_oa [A])/(k_d + k_oa[A])*σ/hv
-    xi_dash_PpIX=0.021, # [mJ/cm^2]
-    xi_dash_Ppp=0.021,
+    # ξ symbolyses the specific oxygen consuption rate (ξ=S_Δ ϕ_t *(k_oa [A])/(k_d + k_oa[A])*σ/hv)
+    # ξ'=S_Δ ϕ_t *(k_oa [A])/(k_d + k_oa[A])
+    xi_PpIX=0.021, # [mJ/cm^2]
+    xi_Ppp=0.021,
 
     # β = k_p/k_ot 
     # k_p : phosphorescence rate
@@ -81,8 +80,8 @@ specific_parameter_setup = SpecificParameterSetup(
     # k_os : rate of reaction between singlet oxygen and ground state photosensitizer (photobleaching), is assumed to be power density dependent in this work. 
     # k_oa : rate of reaction between singlet oxygen and acceptor (cancer cell)
     # [A] : Acceptor cell concentration
-    mu_PpIX=9.1*pow(10,-5),
-    mu_Ppp=9.1*pow(10,-5),
+    mu_PpIX=9.1e-5,
+    mu_Ppp=9.1e-5,
 
     # δ : Low concentration correction term. If the concentration of photosensitizer is low, the probability is higher that 
     # the photosensitizer molecule will react with the singlet oxygen it has created. This probability is included into the model

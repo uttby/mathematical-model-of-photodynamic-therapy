@@ -41,8 +41,8 @@ class GroundState_ExperimentalFit(BaseEstimator, ClassifierMixin):
         Apply the parameters of the estimator globally to the model
         """
         
-        self.mu_PpIX = round(self.mu_PpIX, 5)
-        self.mu_Ppp = round(self.mu_Ppp, 5)
+        self.mu_PpIX = round(self.mu_PpIX, 6)
+        self.mu_Ppp = round(self.mu_Ppp, 6)
 
         specific_parameter_setup.set_mu_PpIX(self.mu_PpIX)
         specific_parameter_setup.set_mu_Ppp(self.mu_Ppp)
@@ -93,7 +93,7 @@ class GroundState_ExperimentalFit(BaseEstimator, ClassifierMixin):
         
         return (self.mu_PpIX, self.mu_Ppp)
 
-def optimize_mu (x, y, min_PpIX, max_PpIX, min_Ppp, max_Ppp, n_iter = 100):
+def optimize_mu (x, y, min_PpIX, max_PpIX, min_Ppp, max_Ppp, n_iter = 100): 
     """
     Optimize mu PpIX and Ppp to fit best to the uploaded experimental data
         Args:

@@ -147,9 +147,9 @@ def mu_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
     # Return the updated data plots and the new value of mu synching the displayed value of slider and textbox
     return (plot_1, plot_2, mu, mu)
 
-def xi_dash_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
+def xi_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
     """ 
-    Updates the value of the variable xi_dash for PpIX.
+    Updates the value of the variable xi for PpIX.
     """
 
     # Check if the callback was triggered by an empty input
@@ -158,21 +158,21 @@ def xi_dash_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
         raise PreventUpdate
     
     # Extract the value of either the slider or textbox, whichever has been changed
-    xi_dash = ctx.triggered[0]['value']
+    xi = ctx.triggered[0]['value']
 
     # Update the specific parameter setup with the new value for mu of PpIX
-    specific_parameter_setup.set_xi_dash_PpIX(xi_dash)
+    specific_parameter_setup.set_xi_PpIX(xi)
 
     # Call a callback function to update the plot based on the dropdown selection
     plot_1 = dropdown_figure_callback(plot_1_dropdown)
     plot_2 = dropdown_figure_callback(plot_2_dropdown)
 
     # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
-    return (plot_1, plot_2, xi_dash, xi_dash)
+    return (plot_1, plot_2, xi, xi)
 
-def xi_dash_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
+def xi_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
     """ 
-    Updates the value of the variable xi_dash for PpIX.
+    Updates the value of the variable xi for PpIX.
     """
 
     # Check if the callback was triggered by an empty input
@@ -181,17 +181,17 @@ def xi_dash_Ppp_callback(plot_1_dropdown, plot_2_dropdown):
         raise PreventUpdate
     
     # Extract the value of either the slider or textbox, whichever has been changed
-    xi_dash = ctx.triggered[0]['value']
+    xi = ctx.triggered[0]['value']
 
     # Update the specific parameter setup with the new value for mu of PpIX
-    specific_parameter_setup.set_xi_dash_Ppp(xi_dash)
+    specific_parameter_setup.set_xi_Ppp(xi)
 
     # Call a callback function to update the plot based on the dropdown selection
     plot_1 = dropdown_figure_callback(plot_1_dropdown)
     plot_2 = dropdown_figure_callback(plot_2_dropdown)
 
     # Return the updated data plotsand the new value of mu synching the displayed value of slider and textbox
-    return (plot_1, plot_2, xi_dash, xi_dash)
+    return (plot_1, plot_2, xi, xi)
 
 def beta_PpIX_callback(plot_1_dropdown, plot_2_dropdown):
     """ 
@@ -442,7 +442,7 @@ def upload_mass_spectrometry_data_callback(data, filename, label, solvent_label,
         
         # Add the prepared concentration data into the uploaded data dictionary 
         # (using the specified label as data label, and replacing old data if the label already exists)
-        # uploaded_data[label] = concentration_data
+        uploaded_data[label] = concentration_data
 
         
         mean_10mW = pd.DataFrame([

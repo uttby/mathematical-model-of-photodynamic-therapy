@@ -13,14 +13,6 @@ from application.layout_components.optimize_data_components import *
 
 from application.callback.callback_functions import *
 
-# TODO
-"""
-how to publish?
-remake the old program too? (have all variables available to change)
-function to show absorbance spectrum?
-write manual and summary with solution plots for our data?
-"""
-
 # Generate the app object
 app = dash.Dash(external_stylesheets=[dbc.themes.COSMO])
 
@@ -78,7 +70,7 @@ param_opt = dbc.Col(
                 )
 
 # Enables adjusting all the other parameters for PDT
-xi_dash = dbc.Col([xi_dash_introduction, set_xi_dash_PpIX, set_xi_dash_Ppp], style={'textAlign': 'center',})
+xi = dbc.Col([xi_introduction, set_xi_PpIX, set_xi_Ppp], style={'textAlign': 'center',})
 beta = dbc.Col([beta_introduction, set_beta_PpIX, set_beta_Ppp], style={'textAlign': 'center',})
 delta = dbc.Col([delta_introduction, set_delta_PpIX, set_delta_Ppp], style={'textAlign': 'center',})
 Phi_t = dbc.Col([Phi_t_introduction, set_Phi_t_PpIX, set_Phi_t_Ppp], style={'textAlign': 'center',})
@@ -113,7 +105,7 @@ app.layout = html.Div(children=[
         html.Br(),
         # Additional variable parameter setup
         dbc.Row([
-            xi_dash,
+            xi,
             beta,
             delta,
             S_Delta,
@@ -226,29 +218,29 @@ def update_mu_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
     return (mu_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
 
 # Update all other param
-# Update xi_dash for PpIX
+# Update xi for PpIX
 @callback(
     Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
-    Output('textbox_xi_dash_PpIX', 'value', allow_duplicate=True), Output('slider_xi_dash_PpIX', 'value', allow_duplicate=True),
-    Input('textbox_xi_dash_PpIX', 'value'),
-    Input('slider_xi_dash_PpIX', 'value'),
+    Output('textbox_xi_PpIX', 'value', allow_duplicate=True), Output('slider_xi_PpIX', 'value', allow_duplicate=True),
+    Input('textbox_xi_PpIX', 'value'),
+    Input('slider_xi_PpIX', 'value'),
     State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
     prevent_initial_call=True
 )
-def update_xi_dash_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
-    return (xi_dash_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
+def update_xi_PpIX(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (xi_PpIX_callback(plot_1_dropdown, plot_2_dropdown))
 
-# Update xi_dash for Ppp
+# Update xi for Ppp
 @callback(
     Output('plot_1', 'figure', allow_duplicate=True), Output('plot_2', 'figure', allow_duplicate=True),
-    Output('textbox_xi_dash_Ppp', 'value', allow_duplicate=True), Output('slider_xi_dash_Ppp', 'value', allow_duplicate=True),
-    Input('textbox_xi_dash_Ppp', 'value'),
-    Input('slider_xi_dash_Ppp', 'value'),
+    Output('textbox_xi_Ppp', 'value', allow_duplicate=True), Output('slider_xi_Ppp', 'value', allow_duplicate=True),
+    Input('textbox_xi_Ppp', 'value'),
+    Input('slider_xi_Ppp', 'value'),
     State('plot_1_dropdown', 'value'), State('plot_2_dropdown', 'value'),
     prevent_initial_call=True
 )
-def update_xi_dash_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
-    return (xi_dash_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
+def update_xi_Ppp(textbox, slider, plot_1_dropdown, plot_2_dropdown):
+    return (xi_Ppp_callback(plot_1_dropdown, plot_2_dropdown))
 
 # Update beta for PpIX
 @callback(

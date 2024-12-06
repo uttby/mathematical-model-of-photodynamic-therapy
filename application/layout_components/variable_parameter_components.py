@@ -78,7 +78,7 @@ variable_parameter_introduction = html.Div(
 set_mu_PpIX = html.Div(
     [
         html.Div("PpIX"), 
-        textbox_component('textbox_mu_PpIX', value=specific_parameter_setup.get_mu_PpIX(), max = 1e-3, step = 1e-6), 
+        textbox_component('textbox_mu_PpIX', value=specific_parameter_setup.get_mu_PpIX(), max = 1e-3, step = 1e-8), 
         slider_component('slider_mu_PpIX', value=specific_parameter_setup.get_mu_Ppp(), max = 1e-3, step = 1e-6, marks=[0, 1e-3, 3]), 
 
     ]
@@ -88,34 +88,34 @@ set_mu_PpIX = html.Div(
 set_mu_Ppp = html.Div(
     [
         html.Div("Ppp"), 
-        textbox_component('textbox_mu_Ppp', value=specific_parameter_setup.get_mu_PpIX(), max = 1e-3, step = 1e-6), 
+        textbox_component('textbox_mu_Ppp', value=specific_parameter_setup.get_mu_PpIX(), max = 1e-3, step = 1e-8), 
         slider_component('slider_mu_Ppp', value=specific_parameter_setup.get_mu_Ppp(), max = 1e-3, step = 1e-6, marks=[0, 1e-3, 3]),
     ]
 )
 
 # Introduction including the explanation for xi for the variable parameter component
-xi_dash_introduction = html.Div(
+xi_introduction = html.Div(
     [
-        html.H4("xi_dash", id = "xi_dash", style={'textAlign': 'left',}),
+        html.H4("xi", id = "xi", style={'textAlign': 'left',}),
     ]
 )
 
-# Component that allows to change xi_dash PpIX via slider or textbox 
-set_xi_dash_PpIX = html.Div(
+# Component that allows to change xi PpIX via slider or textbox 
+set_xi_PpIX = html.Div(
     [
         html.Div("PpIX"), 
-        textbox_component('textbox_xi_dash_PpIX', value=specific_parameter_setup.get_xi_dash_PpIX(), max = 0.05, step = 1e-6), 
-        slider_component('slider_xi_dash_PpIX', value=specific_parameter_setup.get_xi_dash_Ppp(), max = 0.05, step = 1e-6, marks=[0, 1e-3, 3]), 
+        textbox_component('textbox_xi_PpIX', value=specific_parameter_setup.get_xi_PpIX(), max = 0.05, step = 1e-6), 
+        slider_component('slider_xi_PpIX', value=specific_parameter_setup.get_xi_Ppp(), max = 0.05, step = 1e-6, marks=[0, 1e-3, 3]), 
 
     ]
 )
 
-# Component that allows to change xi_dash Ppp via slider or textbox 
-set_xi_dash_Ppp = html.Div(
+# Component that allows to change xi Ppp via slider or textbox 
+set_xi_Ppp = html.Div(
     [
         html.Div("Ppp"), 
-        textbox_component('textbox_xi_dash_Ppp', value=specific_parameter_setup.get_xi_dash_PpIX(), max = 0.05, step = 1e-6), 
-        slider_component('slider_xi_dash_Ppp', value=specific_parameter_setup.get_xi_dash_Ppp(), max = 0.05, step = 1e-6, marks=[0, 1e-3, 3]),
+        textbox_component('textbox_xi_Ppp', value=specific_parameter_setup.get_xi_PpIX(), max = 0.05, step = 1e-6), 
+        slider_component('slider_xi_Ppp', value=specific_parameter_setup.get_xi_Ppp(), max = 0.05, step = 1e-6, marks=[0, 1e-3, 3]),
     ]
 )
 
