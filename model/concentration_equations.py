@@ -27,22 +27,35 @@ def ground_state_concentration(t):
     def system(y, t):
         S__0_PpIX, S__0_Ppp = y
 
-        dS__0_PpIX_dt = -(c__oxy * mu_PpIX * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp + c__oxy) * S__0_PpIX
-            + c__oxy * power_density * mu_PpIX * xi_dash_Ppp * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_PpIX
-            + (c__oxy * delta_PpIX * mu_PpIX * power_density * xi_dash_PpIX + 2 * Phi__PpIX_t * mu_PpIX * APR_PpIX)
-            * (beta_Ppp + gamma_Ppp + c__oxy)) * S__0_PpIX / ((beta_Ppp + gamma_Ppp + c__oxy)*(beta_PpIX + gamma_PpIX + c__oxy) * 2)
-        
-        dS__0_Ppp_dt = 1/(2*(beta_PpIX + gamma_PpIX + c__oxy)*(beta_Ppp + gamma_Ppp + c__oxy)) * (
-            -c__oxy * mu_Ppp * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_Ppp * S__0_Ppp
-            + (
-                (
-                    (-mu_Ppp * xi_dash_PpIX + mu_PpIX * xi_dash_Ppp) * c__oxy * power_density 
-                    + mu_PpIX * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX) 
-                    - mu_Ppp * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp)
-                ) * c__oxy * S__0_PpIX 
-                - (c__oxy * delta_Ppp * mu_Ppp * power_density * xi_dash_Ppp + APR_Ppp * 2 * Phi__Ppp_t * gamma_Ppp) * (beta_PpIX + gamma_PpIX + c__oxy)
-            ) * S__0_Ppp 
-            + c__oxy * S__0_PpIX * mu_PpIX * xi_dash_PpIX * power_density * (S__0_PpIX + delta_PpIX) * (beta_Ppp + gamma_Ppp + c__oxy))
+        dS__0_PpIX_dt = -mu_PpIX*c__oxy/2 * (
+            S__0_PpIX * (xi_dash_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)
+            + 
+            (S__0_PpIX + delta_PpIX)*(xi_dash_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+        )
+        # dS__0_PpIX_dt = -(c__oxy * mu_PpIX * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp + c__oxy) * S__0_PpIX
+        #     + c__oxy * power_density * mu_PpIX * xi_dash_Ppp * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_PpIX
+        #     + (c__oxy * delta_PpIX * mu_PpIX * power_density * xi_dash_PpIX + 2 * Phi__PpIX_t * mu_PpIX * APR_PpIX)
+        #     * (beta_Ppp + gamma_Ppp + c__oxy)) * S__0_PpIX / ((beta_Ppp + gamma_Ppp + c__oxy)*(beta_PpIX + gamma_PpIX + c__oxy) * 2)
+        dS__0_Ppp_dt = -mu_Ppp*c__oxy/2 * (
+            S__0_Ppp * (xi_dash_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+            + 
+            (S__0_Ppp + delta_Ppp)*(xi_dash_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)) + mu_PpIX*c__oxy/2 * (
+            S__0_PpIX * (xi_dash_Ppp * power_density * S__0_Ppp)/(beta_Ppp + gamma_Ppp + c__oxy)
+            + 
+            (S__0_PpIX + delta_PpIX)*(xi_dash_PpIX * power_density * S__0_PpIX)/(beta_PpIX + gamma_PpIX + c__oxy)
+        )
+
+        # dS__0_Ppp_dt = 1/(2*(beta_PpIX + gamma_PpIX + c__oxy)*(beta_Ppp + gamma_Ppp + c__oxy)) * (
+        #     -c__oxy * mu_Ppp * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX + c__oxy) * S__0_Ppp * S__0_Ppp
+        #     + (
+        #         (
+        #             (-mu_Ppp * xi_dash_PpIX + mu_PpIX * xi_dash_Ppp) * c__oxy * power_density 
+        #             + mu_PpIX * xi_dash_Ppp * power_density * (beta_PpIX + gamma_PpIX) 
+        #             - mu_Ppp * xi_dash_PpIX * power_density * (beta_Ppp + gamma_Ppp)
+        #         ) * c__oxy * S__0_PpIX 
+        #         - (c__oxy * delta_Ppp * mu_Ppp * power_density * xi_dash_Ppp + APR_Ppp * 2 * Phi__Ppp_t * gamma_Ppp) * (beta_PpIX + gamma_PpIX + c__oxy)
+        #     ) * S__0_Ppp 
+        #     + c__oxy * S__0_PpIX * mu_PpIX * xi_dash_PpIX * power_density * (S__0_PpIX + delta_PpIX) * (beta_Ppp + gamma_Ppp + c__oxy))
 
         return [dS__0_PpIX_dt, dS__0_Ppp_dt]
 

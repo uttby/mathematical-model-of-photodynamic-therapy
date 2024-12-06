@@ -60,15 +60,16 @@ experimental_setup = ExperimentalSetup(
     # irradiation power density mW/cm2
     power_density = 100,
     # irradiation time used in the visualization plots
-    irradiation_time = 100)
+    irradiation_time = 1000)
 
 # ---------------------------------SPECIFIC SETUP DEFINITIONS--------------------------------------------------
 # TODO add sources?
 # Create an instance of SpecificParameterSetup with the specified parameter values for the simulation
 specific_parameter_setup = SpecificParameterSetup(
+    # ξ' = ξ * σ/hv
     # ξ symbolyses the specific oxygen consuption rate 
-    # ξ'=S_Δ ϕ_t *(k_oa [A])/(k_d + k_oa[A])*σ/hv
-    xi_dash_PpIX=0.021, # [mJ/cm^2]
+    # ξ=S_Δ ϕ_t *(k_oa [A])/(k_d + k_oa[A])
+    xi_dash_PpIX=0.021,
     xi_dash_Ppp=0.021,
 
     # β = k_p/k_ot 

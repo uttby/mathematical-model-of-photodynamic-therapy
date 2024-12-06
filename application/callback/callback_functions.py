@@ -442,8 +442,40 @@ def upload_mass_spectrometry_data_callback(data, filename, label, solvent_label,
         
         # Add the prepared concentration data into the uploaded data dictionary 
         # (using the specified label as data label, and replacing old data if the label already exists)
-        uploaded_data[label] = concentration_data
+        # uploaded_data[label] = concentration_data
+
         
+        mean_10mW = pd.DataFrame([
+            [0.0, 9.889152391, 0.331949941],
+            [10.0, 7.660342549, 0.437022391],
+            [20.0, 6.931313123, 0.590843221],
+            [30.0, 5.877294684, 0.731818182],
+            [40.0, 5.231488794, 0.869664032],
+            [50.0, 5.131357055, 0.953985514],
+            [60.0, 4.77342996, 0.984782609],
+            [70.0, 3.68076417, 0.933069822],
+            [80.0, 3.697891957, 0.981653498],
+            [90.0, 3.478524368, 1.278425553],
+            [100.0, 3.232806324, 1.258662708]
+        ], columns=['tag', 'PpIX_value', 'Ppp_value'])
+
+        mean_100mW = pd.DataFrame([
+            [0.0, 9.786605178, 0.237198063],
+            [10.0, 6.39486166, 0.25256917],
+            [20.0, 5.068994289, 0.327448399],
+            [30.0, 4.123891087, 0.292973202],
+            [40.0, 4.193280632, 0.274967055],
+            [50.0, 3.954589368, 0.296047431],
+            [60.0, 3.84918753, 0.343917431],
+            [70.0, 3.401229684, 0.362582352],
+            [80.0, 3.413526561, 0.368511206],
+            [90.0, 2.981379012, 0.351602984],
+            [100.0, 2.837110237, 0.433728597]
+        ], columns=['tag', 'PpIX_value', 'Ppp_value'])
+        
+        uploaded_data["10mW"] = mean_10mW
+        uploaded_data["100mW"] = mean_100mW
+
         # Create a feedback message including a table of the uploaded data
         message = [
             html.Div(

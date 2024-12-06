@@ -23,7 +23,7 @@ def prepare_raw_data(raw_data, filename, solvent_label):
         # Decode the raw mass spectrometry data and store it in the decoded_data dataframe
         decoded = base64.b64decode(element.split(',')[1])
         decoded_data = pd.read_csv(io.StringIO(decoded.decode('utf-8')),  delimiter='\t', names=['mass', 'value']).astype(float)
-
+        
         # Extract PpIX and Ppp values (using the element mass and factor/bias which has been setup in the config.py file)
         value_PpIX = extract_PpIX_intensity(decoded_data)
         value_Ppp =  extract_Ppp_intensity(decoded_data)
@@ -61,7 +61,6 @@ def prepare_raw_data(raw_data, filename, solvent_label):
     # in the config file
     concentration_data['PpIX_value'] =(prepared_intensity_data['PpIX_value'] - bias_PpIX) / factor_PpIX
     concentration_data['Ppp_value'] = (prepared_intensity_data['Ppp_value'] - bias_Ppp) / factor_Ppp 
-
     # Return the prepared concentration data with updated column names
     return concentration_data
 
@@ -80,9 +79,8 @@ def extract_PpIX_intensity(data):
         # Find the location of the mass value that is included into the data closest to the threshhold
         up = np.argwhere(np.array(data["mass"])>upper_thresh).min()
         low = np.argwhere(np.array(data["mass"])<lower_thresh).max()
-        
         # Get the maximum value inside the specified interval around the element mass
-        value_PpIX = data.iloc[low:up, :].max()['value']
+        value_PpIX = data.iloc[low:up, :]['value'].max()
     # Return the maximal intensity value inside the extraction interval
     return value_PpIX
 

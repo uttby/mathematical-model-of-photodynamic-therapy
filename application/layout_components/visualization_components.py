@@ -176,7 +176,7 @@ Application layout components
 
 # Dropdown menu for choosing the first figure
 plot_1_dropdown = html.Div(children=[
-    dcc.Dropdown(['Ground State Photosensitizer', 'Singlet oxygen concentration', 'Emitted singelt oxygen concentration', 'Reactive singlet oxygen concentration', 'MS'], 
+    dcc.Dropdown(['Ground State Photosensitizer', 'Singlet oxygen concentration', 'Emitted singelt oxygen concentration', 'Reactive singlet oxygen concentration'], 
                  'Ground State Photosensitizer', 
                  id="plot_1_dropdown")
 ])
