@@ -444,7 +444,6 @@ def upload_mass_spectrometry_data_callback(data, filename, label, solvent_label,
         # (using the specified label as data label, and replacing old data if the label already exists)
         uploaded_data[label] = concentration_data
 
-        
         mean_10mW = pd.DataFrame([
             [0.0, 9.889152391, 0.331949941],
             [10.0, 7.660342549, 0.437022391],
@@ -473,8 +472,8 @@ def upload_mass_spectrometry_data_callback(data, filename, label, solvent_label,
             [100.0, 2.837110237, 0.433728597]
         ], columns=['tag', 'PpIX_value', 'Ppp_value'])
         
-        uploaded_data["10mW"] = mean_10mW
-        uploaded_data["100mW"] = mean_100mW
+        #uploaded_data["10mW"] = mean_10mW
+        #uploaded_data["100mW"] = mean_100mW
 
         # Create a feedback message including a table of the uploaded data
         message = [
